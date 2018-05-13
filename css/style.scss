@@ -1,9 +1,9 @@
 ---
 
 ---
-$primary-color-name: {{site.theme.color.primary}};
-$secondary-color-name: {{site.theme.color.secondary}};
-$theme-style-name: {{site.theme.style}};
+$primary-color-name: unquote("{{ site.theme.color.primary }}");
+$secondary-color-name: unquote("{{ site.theme.color.secondary }}");
+$theme-style-name: unquote("{{ site.theme.style }}");
 
 @import "normalize";
 @import "code-highlight";
