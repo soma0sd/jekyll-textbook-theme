@@ -1,0 +1,52 @@
+# 기본 정보
+title: Text Book
+subtitle: jekyll 테마
+email: soma0sd@gmail.com
+author: soma0sd
+
+# URL 세팅
+url: "https://soma0sd.github.io/"
+baseurl: "jekyll-textbook-theme/"
+docurl: "docs/"
+
+# 테마 설정
+theme:
+  color:
+    primary: 'Indigo'
+    secondary: 'Deep Purple'
+  style: light
+
+# 애드센스 설정
+adsense: >
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "user-ca",
+            enable_page_level_ads: true
+       });
+  </script>
+
+# 시스템 설정
+# ! 변경시 오작동 위험이 있습니다. !
+timezone: Asia/Seoul
+markdown: kramdown
+permalink: pretty
+encoding: UTF-8
+defaults:
+  -
+    values:
+      layout: "default"
+coderay:
+  coderay_line_numbers: table
+sass:
+  sass_dir: _sass
+  style: compressed
+kramdown:
+  toc_levels: "1"
+  parse_block_html: true
+  syntax_highlighter_opts:
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1

@@ -1,0 +1,114 @@
+// init variables
+$_tshade: getShade($theme-style-name);
+$_tname1: $primary-color-name;
+$_tname2: $secondary-color-name;
+$_sname:  $theme-style-name;
+
+$primary-color: palette($_tname1);
+$secondary-color: palette($_tname2);
+// Extends
+%theme-primary{
+  background-color: palette($_tname1);
+  color: paletteText($_tname1);
+  border-color: paletteText($_tname1, 500, Dividers);
+  .sub {
+    color: paletteText($_tname1, 500, Secondary);
+  }
+  .icon {
+    color: paletteText($_tname1, 500, Icons);
+  }
+  hr {
+    border-color: paletteText($_tname1, 500, Dividers);
+  }
+}
+%theme-primary-sub{
+  background-color: palette($_tname1, $_tshade);
+  color: paletteText($_tname1, $_tshade);
+  border-color: paletteText($_tname1, $_tshade, Dividers);
+  .sub {
+    color: paletteText($_tname1, $_tshade, Secondary);
+  }
+  .icon {
+    color: paletteText($_tname1, $_tshade, Icons);
+  }
+  hr {
+    border-color: paletteText($_tname1, $_tshade, Dividers);
+  }
+}
+%theme-secondary{
+  background-color: palette($_tname2);
+  color: paletteText($_tname2);
+  border-color: paletteText($_tname2, 500, Dividers);
+  .sub {
+    color: paletteText($_tname2, 500, Secondary);
+  }
+  .icon {
+    color: paletteText($_tname2, 500, Icons);
+  }
+  hr {
+    border-color: paletteText($_tname2, 500, Dividers);
+  }
+}
+%theme-secondary-sub{
+  background-color: palette($_tname2, $_tshade);
+  color: paletteText($_tname2, $_tshade);
+  border-color: paletteText($_tname2, $_tshade, Dividers);
+  .sub {
+    color: paletteText($_tname2, $_tshade, Secondary);
+  }
+  .icon {
+    color: paletteText($_tname2, $_tshade, Icons);
+  }
+  hr {
+    border-color: paletteText($_tname2, $_tshade, Dividers);
+  }
+}
+%article {
+  background-color: getBackground($_sname, 'bg');
+  color: articleTextColor($_sname);
+  border-color: articleTextColor($_sname, Dividers);
+  .sub {
+    color: articleTextColor($_sname, Secondary);
+  }
+  a {
+    color: palette($_tname1);
+  }
+  hr {
+    border-color: paletteText($_tname2, $_tshade, Dividers);
+  }
+}
+
+// Base
+body {
+  @extend %article;
+}
+
+// Layout
+nav {
+  li a:hover {
+    @extend %theme-primary-sub;
+  }
+  li a.active {
+    @extend %theme-primary;
+  }
+}
+title-wrap {
+  a {color: palette($_tname2);}
+}
+footer {
+  @extend %theme-primary-sub;
+  copyright {
+    @extend %theme-primary;
+  }
+}
+article {
+  @extend %article;
+}
+
+// Elements
+.bar {
+  background-color: getBackground($_sname, 'bar');
+}
+.card {
+  background-color: getBackground($_sname, 'card');
+}

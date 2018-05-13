@@ -1,0 +1,50 @@
+<nav class="bar">
+  <title-wrap>
+    <h1><a href="{{root_url}}">{{site.title}}</a></h1>
+    <sub-title class="sub">{{site.subtitle}}</sub-title>
+  </title-wrap>
+  <hr>
+  <ul>
+{%- for main in site.data.toc -%}
+{%-   assign arrName = main.chapter |split: "|" -%}
+{%-   assign title = arrName[0] -%}
+{%-   assign file = arrName[1] -%}
+{%-   assign href = file |prepend: docs_url |append: "/" -%}
+{%-   assign class = "" -%}
+{%-   if file == thisFileName -%}
+{%-     assign class = "active" -%}
+{%-   endif = "" -%}
+    <li>
+      <a class="{{class}}" href="{{href}}">
+        {{title}}
+      </a>
+    </li>
+{%-   if main.sub -%}
+    <ul>
+{%-     for sub in main.sub -%}
+{%-       assign arrName = sub|split: "|" -%}
+{%-       assign title = arrName[0] -%}
+{%-       assign file = arrName[1] -%}
+{%-       assign subhref = file| prepend: href -%}
+{%-       assign class = "" -%}
+{%-       if file == thisFileName -%}
+{%-         assign class = "active" -%}
+{%-       endif = "" -%}
+      <li>
+        <a class="{{class}}" href="{{subhref}}">
+          {{title}}
+        </a>
+      </li>
+{%-     endfor -%}
+    </ul>
+{%-   endif -%}
+{%- endfor -%}
+  </ul>
+</nav>
+<nav-overlay class=""></nav-overlay>
+<div id="nav-btn-sidebar" class="btn float">
+  <i class="material-icons">menu</i>
+</div>
+<div id="nav-btn-top" class="btn float">
+  <i class="material-icons">keyboard_arrow_up</i>
+</div>

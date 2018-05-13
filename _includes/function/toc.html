@@ -1,0 +1,62 @@
+{%- comment -%}
+목차 관련 변수 초기화
+
+* thisFileName: 현재 파일 이름
+* thisTitle: 현재 문서 제목
+
+* listItemNum: 목차 아이템 수
+* thisIndexToc: 현재 문서 인덱스
+* tocData_file: 목차의 파일명 리스트
+* tocData_title: 목차의 제목 리스트
+* tocData_href: 목차의 링크 리스트
+
+{%- endcomment -%}
+{%- assign thisFileName = page.path |split: '.' -%}
+{%- assign thisFileName = thisFileName[-2] |split: '/' -%}
+{%- if thisFileName[-1] == "index" -%}
+{%-   assign thisFileName = thisFileName[-2] -%}
+{%- else -%}
+{%-   assign thisFileName = thisFileName[-1] -%}
+{%- endif -%}
+{%- assign listItemNum = 0 -%}
+{%- assign thisIndexToc = 0 -%}
+{%- assign tocData_file  = "index|" -%}
+{%- assign tocData_title = {{site.title}} |append: "|" -%}
+{%- assign tocData_href  = root_url |append: "|" -%}
+{%- for chapter in site.data.toc -%}
+{%-   assign arr = chapter.chapter |split: "|" -%}
+{%-   assign title = arr[0] |strip -%}
+{%-   assign file  = arr[1] |strip -%}
+{%-   assign href  = file |prepend: docs_url |append: "/" -%}
+{%-   assign listItemNum = listItemNum |plus: 1 -%}
+{%-   assign tocData_file  = tocData_file |append: file |append: "|" -%}
+{%-   assign tocData_title = tocData_title |append: title |append: "|" -%}
+{%-   assign tocData_href  = tocData_href |append: href |append: "|" -%}
+{%-   assign chapter_href  = append: href -%}
+{%-   if file == thisFileName -%}
+{%-     assign thisIndexToc = listItemNum -%}
+{%-     assign thisTitle    = title -%}
+{%-   endif -%}
+{%-   if chapter.sub -%}
+{%-     for sub in chapter.sub -%}
+{%-       assign arr = sub |split: "|" -%}
+{%-       assign title = arr[0] |strip -%}
+{%-       assign file  = arr[1] |strip -%}
+{%-       assign href  = file |prepend: chapter_href |append: "/" -%}
+{%-       assign listItemNum = listItemNum |plus: 1 -%}
+{%-       assign tocData_file  = tocData_file |append: file |append: "|" -%}
+{%-       assign tocData_title = tocData_title |append: title |append: "|" -%}
+{%-       assign tocData_href  = tocData_href |append: href |append: "|" -%}
+{%-       if file == thisFileName -%}
+{%-         assign thisIndexToc = listItemNum -%}
+{%-         assign thisTitle    = title -%}
+{%-       endif -%}
+{%-     endfor -%}
+{%-   endif -%}
+{%- endfor -%}
+{%- assign tocData_file  = tocData_file  |split: "|" -%}
+{%- assign tocData_title = tocData_title |split: "|" -%}
+{%- assign tocData_href  = tocData_href  |split: "|" -%}
+{%- if thisIndexToc == 0 -%}
+{%-   assign thisTitle = site.title -%}
+{%- endif -%}

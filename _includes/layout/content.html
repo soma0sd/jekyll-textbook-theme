@@ -1,0 +1,27 @@
+<aside id="toc-side" class="card"></aside>
+<article-wrap>
+  <title-wrap>
+    <h1>{{thisTitle}}</h1>
+    <hr>
+  </title-wrap>
+  <article>
+{%- include function/article.html -%}
+  </article>
+  <div class="row">
+{%- if thisIndexToc > 0 -%}
+{%-   assign index = thisIndexToc |minus: 1 -%}
+{%-   assign href = tocData_href[index] -%}
+<a class="btn left" href="{{href}}">
+      <i class="material-icons">arrow_left</i>
+{{    tocData_title[index] }}</a>
+{%- endif -%}
+{%- if thisIndexToc < listItemNum -%}
+{%-   assign index = thisIndexToc |plus: 1 -%}
+{%-   assign href = tocData_href[index] -%}
+    <a class="btn right" href="{{href}}">
+{{    tocData_title[index] }}
+      <i class="material-icons">arrow_right</i>
+    </a>
+{%- endif -%}
+  </div>
+<br />

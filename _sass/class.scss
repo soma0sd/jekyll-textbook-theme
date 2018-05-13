@@ -1,0 +1,85 @@
+%shadow-dp1 {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12),
+              0 1px 2px rgba(0,0,0,0.24);
+}
+%shadow-dp2 {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16),
+              0 3px 6px rgba(0,0,0,0.23);
+}
+%shadow-dp3 {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19),
+              0  6px  6px rgba(0,0,0,0.23);
+}
+%shadow-dp4 {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+              0 10px 10px rgba(0,0,0,0.22);
+}
+%shadow-dp5 {
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30),
+              0 15px 12px rgba(0,0,0,0.22);
+}
+
+.bar {
+  @extend %shadow-dp2;
+}
+.card {
+  @extend %shadow-dp1;
+}
+.btn {
+  user-select: none;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 2px;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  vertical-align: middle;
+  font-size: .9rem;
+  padding: 0 .3rem;
+  @extend %theme-secondary;
+  @extend %shadow-dp1;
+  .material-icons {
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 1.5rem;
+    font-size: 1.5rem;
+  }
+  &.float {
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    padding: 0;
+    vertical-align: middle;
+    text-align: center;
+    .material-icons {
+      line-height: 3rem;
+      font-size: 2rem;
+    }
+  }
+}
+
+/*
+ ██████  ██████  ██ ██████
+██       ██   ██ ██ ██   ██
+██   ███ ██████  ██ ██   ██
+██    ██ ██   ██ ██ ██   ██
+ ██████  ██   ██ ██ ██████
+*/
+.row {
+  display: block;
+  overflow: hidden;
+  margin: .5rem .3rem;
+}
+.left {
+  float: left;
+  margin-right: .3rem;
+}
+.right {
+  float: right;
+  margin-left: .3rem;
+}
+.center {
+  margin: auto;
+}
+@for $i from 1 through 12 {
+  .s#{$i} { width: $i * (100% / 12); }
+}

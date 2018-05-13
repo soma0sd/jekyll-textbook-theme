@@ -1,0 +1,16 @@
+{%- assign root_url = site.url | append: site.baseurl -%}
+{%- assign docs_url = root_url | append: site.docurl -%}
+{%- assign cdnjs_root = "https://cdnjs.cloudflare.com/ajax/libs" -%}
+{%- include function/toc.html -%}{%- comment -%}
+목차 관련 변수 초기화
+
+* thisFileName: 현재 파일 이름
+* thisTitle: 현재 문서 제목
+
+* listItemNum: 목차 아이템 수
+* thisIndexToc: 현재 문서 인덱스
+* tocData_file: 목차의 파일명 리스트
+* tocData_title: 목차의 제목 리스트
+* tocData_href: 목차의 링크 리스트
+
+{%- endcomment -%}

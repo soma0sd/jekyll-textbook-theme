@@ -1,0 +1,13 @@
+<head>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link rel="stylesheet" href="{{cdnjs_root}}/KaTeX/0.9.0/katex.min.css" />
+  <link rel="stylesheet" href="{{root_url}}css/style.css">
+{%- assign title = site.title -%}
+{%- if thisTitle -%}
+{%-   assign title = title |append: ":" |append: thisTitle -%}
+{%- endif -%}
+  <title>{{title}}</title>
+{%- if site.adsense -%}
+{{site.adsense}}
+{%- endif -%}
+</head>

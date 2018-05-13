@@ -1,0 +1,83 @@
+/*
+ ██████  ██████  ██       ██████  ██████
+██      ██    ██ ██      ██    ██ ██   ██
+██      ██    ██ ██      ██    ██ ██████
+██      ██    ██ ██      ██    ██ ██   ██
+ ██████  ██████  ███████  ██████  ██   ██
+*/
+@function palette($color, $shade: 500) {
+  $colorMap: map-get($palette, $color);
+  $result: map-get($colorMap, $shade);
+  @return $result;
+}
+
+@function paletteText($color, $shade: 500, $shadeText: Primary) {
+  $colorMap: map-get($paletteText, $color);
+  $textColor: map-get($colorMap, $shade);
+  $colorMap: map-get($palette, $textColor);
+  $result: map-get($colorMap, $shadeText);
+  @return $result;
+}
+@function articleTextColor($mode, $shadeText: Primary){
+  @if ($mode == "light") {
+    $colorMap: map-get($palette, Black);
+    $result: map-get($colorMap, $shadeText);
+    @return $result;
+  } @else if ($mode == "dark") {
+    $colorMap: map-get($palette, White);
+    $result: map-get($colorMap, $shadeText);
+    @return $result;
+  } @else {
+    @error "_config.yml의 them.style 옵션은 (light/dark)만 지원합니다.";
+  }
+}
+@function getShade($mode){
+  @if ($mode == "light") {
+      @return 100;
+  } @else if ($mode == "dark") {
+      @return 700;
+  } @else {
+      @error "_config.yml의 them.style 옵션은 (light/dark)만 지원합니다.";
+  }
+}
+@function getBackground($mode, $stat){
+  @if ($mode == "light") {
+    @if ($stat == 'bar') {
+        @return palette(Grey, 100);
+    } @else if ($stat == 'bg') {
+        @return palette(Grey, 50);
+    } @else if ($stat == 'card') {
+        @return palette(White);
+    } @else {
+      @error "색상 초기화 오류: [#{$stat}]은 올바른 변수가 아닙니다.(bar/bg/card)";
+    }
+  } @else if $mode == "dark" {
+      @if ($stat == 'bar') {
+          @return palette(Grey, 900);
+      } @else if ($stat == 'bg') {
+          @return #303030;
+      } @else if ($stat == 'card') {
+          @return palette(Grey, 800);
+      } @else {
+        @error "색상 초기화 오류: [#{$stat}]은 올바른 변수가 아닙니다.(bar/bg/card)";
+      }
+  } @else {
+      @error "_config.yml의 them.style 옵션은 (light/dark)만 지원합니다.";
+  }
+}
+
+// 뷰포트 브레이크포인트
+$window-view-small:   600px;
+$window-view-medium:  960px;
+$window-view-large:  1280px;
+$window-view-xlarge: 1920px;
+
+@function Vmin($var){@return "min-width: #{$var}";}
+@function Vmax($var){@return "max-width: #{$var}";}
+@mixin media-min($screen) {
+  @if $screen == s {@media (Vmin($window-view-small)){@content;}}
+  @else if $screen == m {@media (Vmin($window-view-medium)){@content;}}
+  @else if $screen == l {@media (Vmin($window-view-large)){@content;}}
+  @else if $screen == xl {@media (Vmin($window-view-xlarge)){@content;}}
+  @else { @warn "using only [s, m, l, xl]"; }
+}
