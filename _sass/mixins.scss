@@ -28,7 +28,7 @@
     $result: map-get($colorMap, $shadeText);
     @return $result;
   } @else {
-    @error "[color.articleTextColor] _config.yml의 theme.style 옵션은 (light/dark)만 지원합니다.";
+    @error "[color.articleTextColor] In: [#{$mode}] _config.yml의 theme.style 옵션은 (light/dark)만 지원합니다.";
   }
 }
 @function getShade($mode){
@@ -37,7 +37,7 @@
   } @else if ($mode == "dark") {
       @return 700;
   } @else {
-      @error "[color.getShade] _config.yml의 theme.style 옵션은 (light/dark)만 지원합니다.";
+      @error "[color.getShade] In: [#{$mode}] _config.yml의 theme.style 옵션은 (light/dark)만 지원합니다.";
   }
 }
 @function getBackground($mode, $stat){
