@@ -3,7 +3,7 @@
 ---
 $primary-color-name: unquote("{{ site.theme.color.primary }}");
 $secondary-color-name: unquote("{{ site.theme.color.secondary }}");
-$theme-style-name: unquote("{{ site.theme.style }}");
+$theme-style-name: "{{ site.theme.style }}";
 
 @import "normalize";
 @import "code-highlight";
