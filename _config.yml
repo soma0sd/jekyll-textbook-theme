@@ -14,7 +14,7 @@ theme:
   color:
     primary: 'Indigo'
     secondary: 'Deep Purple'
-  style: light
+  style: 'light'
 
 # 애드센스 설정
 adsense: >
