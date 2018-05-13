@@ -1,11 +1,11 @@
 // init variables
-$_tshade: getShade($theme-style-name);
 $_tname1: $primary-color-name;
 $_tname2: $secondary-color-name;
 $_sname:  $theme-style-name;
 
 $primary-color: palette($_tname1);
 $secondary-color: palette($_tname2);
+$_tshade: getShade($theme-style-name);
 // Extends
 %theme-primary{
   background-color: palette($_tname1);
