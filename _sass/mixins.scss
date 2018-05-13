@@ -28,16 +28,16 @@
     $result: map-get($colorMap, $shadeText);
     @return $result;
   } @else {
-    @error "_config.yml의 them.style 옵션은 (light/dark)만 지원합니다.";
+    @error "[color.articleTextColor] _config.yml의 theme.style 옵션은 (light/dark)만 지원합니다.";
   }
 }
 @function getShade($mode){
-  @if ($mode == light) {
+  @if ($mode == "light") {
       @return 100;
-  } @else if ($mode == dark) {
+  } @else if ($mode == "dark") {
       @return 700;
   } @else {
-      @error "_config.yml의 theme.style 옵션은 (light/dark)만 지원합니다.";
+      @error "[color.getShade] _config.yml의 theme.style 옵션은 (light/dark)만 지원합니다.";
   }
 }
 @function getBackground($mode, $stat){
@@ -62,7 +62,7 @@
         @error "색상 초기화 오류: [#{$stat}]은 올바른 변수가 아닙니다.(bar/bg/card)";
       }
   } @else {
-      @error "_config.yml의 them.style 옵션은 (light/dark)만 지원합니다.";
+      @error "[color.getBackground] _config.yml의 theme.style 옵션은 (light/dark)만 지원합니다.";
   }
 }
 
